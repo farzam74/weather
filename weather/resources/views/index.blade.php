@@ -13,45 +13,35 @@
 
 <div class="card">
 
-
     <h2>{{$city}}</h2>
-    <h3><span>Wind {{$weather['current']['wind_speed']}} km/h </span></h3>
+    <h3><span>Wind {{$weather['current']['wind_speed']}} km/h </span> <b  style="color: black ; margin-left: 15px">{{$weather['current']['weather'][0]['description']}}</b></h3>
     <h1>{{round($weather['current']['temp'])}}°</h1>
     <div class="sky">
-        <div class="sun"></div>
-        <div class="cloud">
-            <div class="circle-small"></div>
-            <div class="circle-tall"></div>
-            <div class="circle-medium"></div>
-        </div>
+
+        <img src="http://openweathermap.org/img/wn/{{$icon}}@2x.png" alt="icon">
     </div>
     <table>
         <tr>
-            <td>TUE</td>
-            <td>WED</td>
-            <td>THU</td>
-            <td>FRI</td>
-            <td>SAT</td>
+
+          @for($i=0; $i<8; $i++)
+                <th>{{now()->addDays($i)->format('D')}} </th>
+           @endfor
         </tr>
         <tr>
-            <td>30°</td>
-            <td>34°</td>
-            <td>36°</td>
-            <td>34°</td>
-            <td>37°</td>
+
+            @foreach($weather['daily'] as $day)
+                <td>{{ round($day['temp']['max']) }}°</td>
+            @endforeach
+
         </tr>
         <tr>
-            <td>17°</td>
-            <td>22°</td>
-            <td>19°</td>
-            <td>23°</td>
-            <td>19°</td>
+            @foreach($weather['daily'] as $day)
+                <td>{{ round($day['temp']['min']) }}°</td>
+            @endforeach
         </tr>
     </table>
 </div>
 
-{{--{{print_r($coord)}}--}}
-{{--{{$coord['coord']['lon']}}--}}
 
 
 </body>

@@ -78,7 +78,6 @@ span span {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #03A9F4;
     -webkit-animation: up 2s cubic-bezier(.39, 0, .38, 1) .2s;
 }
 
